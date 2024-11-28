@@ -22,6 +22,9 @@ author = thought[0]['a']
 image_response = requests.get(image_url)
 image_data = image_response.json()
 
+### Get Image title
+image_title = image_data['title']
+
 ### Get the explanation for the image
 image_explanation = image_data['explanation']
 
@@ -39,11 +42,11 @@ image_content = image.content
 with open(f'daily_images/{date}.png', 'wb') as image_file:
     image_file.write(image_content)
 
-## Web-App is built using streamlit
+# Web-App is built using streamlit
 
 st.set_page_config(layout="wide")
 
-col1,col2, col3 =st.columns([4,5,4])
+col1,col2, col3 =st.columns([3,5,3])
 
 with col1:
     st.write(f"Date: {date}")
@@ -63,7 +66,7 @@ with col2:
     "\n"
     "\n"
     "\n"
-    st.title("Astronomical Image of The Day:")
+    st.title(f"{image_title}:")
     "\n"
 
 
